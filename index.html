@@ -3,38 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asics Shoes Calculator</title>
+    <title>Asics Shoe Calculator</title>
     <style>
+        /* General Page Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', Arial, sans-serif;
             text-align: center;
-            margin: 50px;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
-        input {
-            padding: 10px;
+
+        /* Card-Like Container */
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
             font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
         }
+
+        /* Input Field */
+        input {
+            padding: 12px;
+            font-size: 18px;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            text-align: center;
+            transition: all 0.2s ease-in-out;
+        }
+
+        input:focus {
+            border-color: #007aff;
+            box-shadow: 0 0 5px rgba(0, 122, 255, 0.3);
+        }
+
+        /* Button */
+        button {
+            padding: 12px;
+            font-size: 18px;
+            width: 100%;
+            background: #007aff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+
+        button:hover {
+            background: #005ecb;
+        }
+
+        /* Result Text */
         #result {
-            margin-top: 20px;
             font-size: 20px;
             font-weight: bold;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        /* Subtle Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn 0.3s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
-    <h2>Asics Shoes Value Calculator</h2>
-    <p>1 pair of Asics tracking shoes = €160</p>
-    <label for="amount">Enter amount in €:</label>
-    <input type="number" id="amount" oninput="calculateShoes()" placeholder="Enter amount...">
-    <div id="result">0 pairs</div>
+
+    <div class="container fade-in">
+        <h2>Asics Shoe Value Calculator</h2>
+        <p>Enter an amount in euros to see how many pairs of Asics tracking shoes (€160 each) you can get:</p>
+        
+        <input type="number" id="amount" placeholder="Enter amount in €">
+        <button onclick="calculateShoes()">Calculate</button>
+        
+        <p id="result"></p>
+    </div>
 
     <script>
         function calculateShoes() {
             let amount = document.getElementById("amount").value;
-            let shoeValue = 160;
-            let pairs = (amount / shoeValue).toFixed(2);
-            document.getElementById("result").innerText = pairs + " pairs";
+            let shoePrice = 160;
+            if (amount && amount > 0) {
+                let pairs = (amount / shoePrice).toFixed(2);
+                document.getElementById("result").innerText = `You can buy ${pairs} pairs of Asics tracking shoes.`;
+            } else {
+                document.getElementById("result").innerText = "Please enter a valid amount.";
+            }
         }
     </script>
+
 </body>
 </html>
